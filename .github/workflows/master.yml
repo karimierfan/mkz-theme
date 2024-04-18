@@ -9,18 +9,23 @@ jobs:
             mkdir -p ~/.ssh/
             install -m 600 -D /dev/null ~/.ssh/id_rsa
             echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-            echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+            echo "${{secrets.SSH_KNOWN_HOSTS}}" > ~/.ssh/known_hosts
+            apt install sshpass
+            sshpass -p "${{ secrets.PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }}
+            ls -l /opt
+            cd /opt/Erfan_Mohammad_Karimi_Zade_Cangrow
+            echo ${{ secrets.PASSWORD }} | sudo -S bash -c ./manager.sh pull-theme
           shell: bash
-          env: 
-            SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
-        - name: executing remote ssh command to pull theme from server
-          uses: appleboy/ssh-action@v1.0.3
-          with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USERNAME }}
-            password: ${{ secrets.PASSWORD }}
-            port: 22
-            script: |
-              cd /opt/Erfan_Mohammad_Karimi_Zade_Cangrow
-              echo ${{ secrets.PASSWORD }} | sudo -S bash -c ./manager.sh pull-theme
+        # - name: executing remote ssh command to pull theme from server
+        #   uses: appleboy/ssh-action@v1.0.3
+        #   with:
+        #     host: ${{ secrets.HOST }}
+        #     username: ${{ secrets.USERNAME }}
+        #     password: ${{ secrets.PASSWORD }}
+        #     port: 22
+        #     timeout: 0
+        #     debug: true
+        #     script: |
+        #       cd /opt/Erfan_Mohammad_Karimi_Zade_Cangrow
+        #       echo ${{ secrets.PASSWORD }} | sudo -S bash -c ./manager.sh pull-theme
               
