@@ -1,8 +1,17 @@
 name: hello-world
 on: push
 jobs:
-  sample-job:
+  theme-re-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: updating
-        run: echo "Hello World!"
+        - name: executing remote ssh command to pull theme from server
+          uses: appleboy/ssh-action@v1.0.3
+          with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.PASSWORD }}
+            port: 22
+            script: |
+              cd /opt/Erfan_Mohammad_Karimi_Zade_Cangrow
+              echo ${{ secrets.PASSWORD }} | sudo -S bash -c ./manager.sh pull-theme
+                
