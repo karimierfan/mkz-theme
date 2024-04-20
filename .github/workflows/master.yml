@@ -5,12 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run sshpass commands
-        uses: matheusvanzan/sshpass-action@v2
-        with:
-          host: ${{ secrets.HOST }}
-          user: ${{ secrets.USERNAME }}
-          pass: ${{ secrets.PASSWORD }}
-          run: ls -l /opt
+        run: ls -l /opt
+          
           
         # - name: Create SSH Key
         #   run: |
