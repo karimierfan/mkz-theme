@@ -1,29 +1,9 @@
-<<<<<<< HEAD:.github/workflows/master.yml
-name: hello-world
-on: push
-jobs:
-  theme-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run sshpass commands
-        run: ls -l /opt
-          
-=======
 # name: hello-world
 # on: push
 # jobs:
 #   theme-deploy:
 #     runs-on: ubuntu-latest
-#     steps:
-#       - name: Run sshpass commands
-#         uses: matheusvanzan/sshpass-action@v2
-#         with:
-#           host: ${{ secrets.HOST }}
-#           user: ${{ secrets.USERNAME }}
-#           pass: ${{ secrets.PASSWORD }}
-#           run: ls -l /opt
->>>>>>> 885af1f (changing in theme):.github/workflows/master.txt
-          
+#     steps:          
         # - name: Create SSH Key
         #   run: |
         #     mkdir -p ~/.ssh/
